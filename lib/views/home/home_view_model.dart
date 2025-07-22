@@ -6,6 +6,7 @@ import '../../services/local/activity_local_service.dart';
 class HomeViewModel extends BaseViewModel {
   List<Map<String, dynamic>> activity = [];
   bool isLoaded = false;
+  bool? lastIsOnline;
 
   final SharedPreferenceService _prefsService;
   late final ActivityLocalService _localService;
@@ -17,7 +18,7 @@ class HomeViewModel extends BaseViewModel {
   @override
   void onBindingCreated() {
     super.onBindingCreated();
-    fetchActivity();
+    // fetchActivity ilk açılışta dışarıdan tetiklenecek
   }
 
   Future<void> fetchActivity({bool forceOnline = false, bool isOnline = false}) async {
@@ -29,7 +30,6 @@ class HomeViewModel extends BaseViewModel {
           final snapshot = await FirebaseFirestore.instance
               .collection('activity')
               .get();
-          print('Firestore snapshot docs: ${snapshot.docs.length}');
           final data = snapshot.docs.map((doc) {
             final map = doc.data();
             if (map['date'] != null && map['date'] is Timestamp) {
@@ -39,28 +39,22 @@ class HomeViewModel extends BaseViewModel {
             }
             return map;
           }).toList();
-          print('Firestore data: $data');
           await _localService.saveActivityList(data);
           return data;
         },
         onSuccess: (data) {
-          print('onSuccess, data: $data');
           activity = data;
           isLoaded = true;
           notify();
         },
         onError: (e) async {
-          print('onError: $e');
           activity = await _localService.getActivityList();
           isLoaded = true;
           notify();
         },
-        onFinally: () {
-          print('onFinally');
-        },
+        onFinally: () {},
       );
     } else {
-      print('Offline, local cache denenecek');
       activity = await _localService.getActivityList();
       isLoaded = true;
       notify();

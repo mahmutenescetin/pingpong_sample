@@ -19,8 +19,10 @@ class LoginViewModel extends BaseViewModel {
         emailController.text.trim(),
         passwordController.text.trim(),
       );
+      if (!mounted) return;
       showFlushBar("Kayıt başarılı");
     } catch (e) {
+      if (!mounted) return;
       showFlushBar("Kayıt başarısız: $e'");
     }
   }
@@ -31,8 +33,10 @@ class LoginViewModel extends BaseViewModel {
         emailController.text.trim(),
         passwordController.text.trim(),
       );
+      if (!mounted) return;
       showFlushBar('Giriş başarılı');
     } catch (e) {
+      if (!mounted) return;
       showFlushBar('Giriş başarısız: $e');
     }
   }

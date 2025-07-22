@@ -17,9 +17,10 @@ class LoginView extends StatelessWidget {
           final isLoggedIn = snapshot.data ?? viewModel.isLoggedIn;
           if (!isLoggedIn) {
             return Scaffold(
-              body: SingleChildScrollView(
-                padding: EdgeInsets.symmetric(horizontal: context.hGap),
+              body: Padding(
+                padding: const EdgeInsets.all(16.0),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Gap(context.vGap),
@@ -39,7 +40,6 @@ class LoginView extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: viewModel.register,
-
                       child: const Text("Kayıt Ol"),
                     ),
                   ],
@@ -60,6 +60,7 @@ class LoginView extends StatelessWidget {
               body: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center, // Eklendi
                   children: [
                     const Text('Giriş başarılı!'),
                     const SizedBox(height: 16),
