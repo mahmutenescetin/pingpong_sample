@@ -205,7 +205,7 @@ class _ViewModelBuilder<T extends ChangeNotifier>
           builder: (context) => Stack(
             alignment: Alignment.center,
             children: [
-              Container(color: Colors.black.withOpacity(.3)),
+              Container(color: Colors.black.withValues(alpha: 0.3)),
               const ReusableCustomProgress(),
             ],
           ),

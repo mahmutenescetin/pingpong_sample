@@ -1,43 +1,37 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:pingpong_sample/common/base_view_model.dart';
 
-class HomeViewModel extends ChangeNotifier {
-  final auth = FirebaseAuth.instance;
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-
-  Future<void> register(BuildContext context) async {
-    try {
-      await auth.createUserWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('Kayıt başarılı')));
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  Future<void> login(BuildContext context) async {
-    try {
-      await auth.signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('Giriş başarılı')));
-    } catch (e) {
-      print(e);
-    }
-  }
+class HomeViewModel extends BaseViewModel {
+  List<Map<String, dynamic>> activity = [];
+  bool isLoaded = false;
 
   @override
-  void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-    super.dispose();
+  void onBindingCreated() {
+    super.onBindingCreated();
+    fetchActivity();
+  }
+
+  Future<void> fetchActivity() async {
+    await flowWithFirestore<List<Map<String, dynamic>>>(
+      callback: () async {
+        final snapshot = await FirebaseFirestore.instance
+            .collection('activity')
+            .get();
+        return snapshot.docs.map((doc) => doc.data()).toList();
+      },
+      onSuccess: (data) {
+        activity = data;
+        isLoaded = true;
+        notify();
+      },
+      onError: (e) {
+        isLoaded = true;
+        notify();
+      },
+      onFinally: () {
+        isLoaded = true;
+        notify();
+      },
+    );
   }
 }

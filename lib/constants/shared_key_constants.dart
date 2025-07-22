@@ -1,5 +1,5 @@
 enum SharedKeyConstants {
-  keyConstants('keyConstants');
+  firebaseIdToken('firebase_id_token');
 
   final String value;
 

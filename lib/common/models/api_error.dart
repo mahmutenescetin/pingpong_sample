@@ -1,5 +1,3 @@
-
-
 class ApiError {
   final int errorCode;
   final String message;
