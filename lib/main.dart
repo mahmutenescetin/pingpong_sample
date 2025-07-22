@@ -9,31 +9,11 @@ import 'package:pingpong_sample/services/local/shared_preference_service.dart';
 import 'package:pingpong_sample/views/home/home_view.dart';
 import 'package:pingpong_sample/views/login/login_view.dart';
 import 'package:provider/provider.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
-
-
-class ConnectivityProvider extends ChangeNotifier {
-  bool isOnline = false;
-
-  ConnectivityProvider() {
-    _init();
-  }
-
-  void _init() {
-    Connectivity().checkConnectivity().then((result) {
-      isOnline = result != ConnectivityResult.none;
-      notifyListeners();
-    });
-    Connectivity().onConnectivityChanged.listen((result) {
-      isOnline = result != ConnectivityResult.none;
-      notifyListeners();
-    });
-  }
-}
+import 'package:pingpong_sample/providers/connectivity_provider.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
-  print(' Arka planda mesaj alındı:  [38;5;2m${message.messageId} [0m');
+  print(' Arka planda mesaj alındı: ${message.messageId}');
 }
 
 void main() async {
