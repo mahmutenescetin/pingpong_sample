@@ -18,7 +18,6 @@ class HomeViewModel extends BaseViewModel {
   @override
   void onBindingCreated() {
     super.onBindingCreated();
-    // fetchActivity ilk açılışta dışarıdan tetiklenecek
   }
 
   Future<void> fetchActivity({bool forceOnline = false, bool isOnline = false}) async {

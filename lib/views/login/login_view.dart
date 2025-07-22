@@ -60,7 +60,7 @@ class LoginView extends StatelessWidget {
               body: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center, // Eklendi
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const Text('Giriş başarılı!'),
                     const SizedBox(height: 16),

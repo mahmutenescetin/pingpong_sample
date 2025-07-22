@@ -20,7 +20,6 @@ class HomeView extends StatelessWidget {
         return ViewModelBuilder<HomeViewModel>(
           initViewModel: () => HomeViewModel(locator<SharedPreferenceService>()),
           builder: (context, viewModel) {
-            // isOnline değiştiyse fetchActivity çağır
             if (viewModel.lastIsOnline != isOnline) {
               viewModel.lastIsOnline = isOnline;
               viewModel.fetchActivity(isOnline: isOnline);
