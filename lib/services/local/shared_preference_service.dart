@@ -10,7 +10,7 @@ class SharedPreferenceService {
     _prefs = await SharedPreferences.getInstance();
   }
 
-  static const _prefix = 'colendiMerchantSdk_';
+  static const _prefix = 'pingpongSample_';
   final Map<SharedKeyConstants, Object?> _cache = {};
 
   String _getRawKey(SharedKeyConstants key) => '$_prefix${key.value}';

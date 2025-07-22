@@ -1,6 +1,6 @@
 mixin StringTemplates {
   static const String viewModelTemplate = '''
-import 'package:colendi_merchant_sdk/src/common/base_view_model.dart';
+import 'package:pingpong_sample/src/common/base_view_model.dart';
 
 final class {VIEW_NAME}ViewModel extends BaseViewModel {
   @override
@@ -11,10 +11,10 @@ final class {VIEW_NAME}ViewModel extends BaseViewModel {
   static const String viewTemplate = '''
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:colendi_merchant_sdk/src/common/view_model_builder.dart';
-import 'package:colendi_merchant_sdk/src/common/widgets/scaffold_view.dart';
-import 'package:colendi_merchant_sdk/src/utils/extensions/context_extensions.dart';
-import 'package:colendi_merchant_sdk/src/views/{SNAKE_NAME}/{SNAKE_NAME}_view_model.dart';
+import 'package:pingpong_sample/src/common/view_model_builder.dart';
+import 'package:pingpong_sample/src/common/widgets/scaffold_view.dart';
+import 'package:pingpong_sample/src/utils/extensions/context_extensions.dart';
+import 'package:pingpong_sample/src/views/{SNAKE_NAME}/{SNAKE_NAME}_view_model.dart';
 
 final class {VIEW_NAME}View extends StatelessWidget {
   const {VIEW_NAME}View({super.key});
