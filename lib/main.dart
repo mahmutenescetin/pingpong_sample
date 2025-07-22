@@ -41,7 +41,6 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return MaterialApp(
-          title: 'Flutter Demo',
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           ),
@@ -101,6 +100,7 @@ class _AuthGateState extends State<AuthGate> {
     return StreamBuilder(
       stream: authService.authStateChanges,
       builder: (context, snapshot) {
+
         if (snapshot.connectionState == ConnectionState.active) {
           final user = snapshot.data;
           if (user == null) {
