@@ -37,7 +37,7 @@ Proje mimarisi, sürdürülebilir ve test edilebilir bir yapı sunar. Tüm state
 
 ## Özellikler ve Testler
 
-![Push Notification Testi](@push_notification_test.jpeg)
+![Push Notification Testi](assets/push_notification_test.jpeg)
 
 Yukarıda görüldüğü gibi push notification testi yapılmış ve başarıyla sonuç alınmıştır.
 
