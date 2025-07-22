@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:pingpong_sample/utils/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -36,9 +35,9 @@ class ReusableCustomProgress extends StatelessWidget {
           SizedBox(
             width: 165.w,
             child: LinearProgressIndicator(
-              color: context.colors.background.surface.standard,
+              color: Colors.green,
               borderRadius: BorderRadius.circular(10),
-              backgroundColor: context.colors.background.surface.standard,
+              backgroundColor:Colors.blue,
             ),
           ),
         ],
