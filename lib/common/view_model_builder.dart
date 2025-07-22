@@ -9,6 +9,7 @@ import 'package:pingpong_sample/utils/extensions/context_extensions.dart';
 import 'package:pingpong_sample/utils/locator.dart';
 import 'package:pingpong_sample/utils/navigator_util.dart';
 import 'package:provider/provider.dart';
+import 'package:pingpong_sample/common/enums/flush_bar_type.dart';
 
 class ViewModelBuilder<T extends ChangeNotifier> extends StatefulWidget {
   const ViewModelBuilder({
@@ -59,6 +60,12 @@ class _ViewModelBuilder<T extends ChangeNotifier>
         interactionMixin.navigateAndRemoveUntil = _navigateAndRemoveUntil;
         interactionMixin.getViewModel = _getViewModel;
         interactionMixin.screenHeight = context.height;
+        // showFlushBar fonksiyonunu burada atıyoruz
+        interactionMixin.showFlushBar = (String message, {FlushBarType type = FlushBarType.success}) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(message)),
+          );
+        };
       }
 
       if (viewModel is BaseViewModel) {
