@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "77132745145",
+    "project_id": "pingpong-sample",
+    "storage_bucket": "pingpong-sample.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:77132745145:android:1f438c3c16723e00e6ce68",
+        "android_client_info": {
+          "package_name": "com.example.deneme"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_LuKQ16iA5plYahEhDHjeHu5ixslfQs8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
