@@ -5,15 +5,24 @@ import 'package:pingpong_sample/utils/extensions/object_extensions.dart';
 import 'package:pingpong_sample/utils/locator.dart';
 import 'package:pingpong_sample/views/home/home_view_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/provider.dart';
+import '../../main.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final isOnline = context.watch<ConnectivityProvider>().isOnline;
     return ViewModelBuilder<HomeViewModel>(
       initViewModel: () => HomeViewModel(locator<SharedPreferenceService>()),
       builder: (context, viewModel) {
+        // İlk açılışta online ise fetchActivity çağır (build sonrası)
+        if (!viewModel.isLoaded && !viewModel.isBusy) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            viewModel.fetchActivity(isOnline: isOnline);
+          });
+        }
         if (!viewModel.isLoaded || viewModel.isBusy) {
           return const Scaffold(
             body: Center(child: CircularProgressIndicator()),
@@ -35,12 +44,12 @@ class HomeView extends StatelessWidget {
               Row(
                 children: [
                   Icon(
-                    viewModel.isOnline ? Icons.wifi : Icons.wifi_off,
-                    color: viewModel.isOnline ? Colors.green : Colors.red,
+                    isOnline ? Icons.wifi : Icons.wifi_off,
+                    color: isOnline ? Colors.green : Colors.red,
                   ),
                   IconButton(
                     icon: const Icon(Icons.refresh),
-                    onPressed: () => viewModel.fetchActivity(),
+                    onPressed: () => viewModel.fetchActivity(isOnline: isOnline),
                     tooltip: 'Yenile',
                   ),
                 ],

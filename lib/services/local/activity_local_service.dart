@@ -15,7 +15,7 @@ class ActivityLocalService {
 
   Future<List<Map<String, dynamic>>> getActivityList() async {
     
-    final jsonString = _prefsService.get(SharedKeyConstants.activityList);
+    final String? jsonString = _prefsService.get<String>(SharedKeyConstants.activityList);
     if (jsonString == null) return [];
     final List<dynamic> decoded = jsonDecode(jsonString);
     return decoded.cast<Map<String, dynamic>>();
