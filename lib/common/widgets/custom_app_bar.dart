@@ -8,6 +8,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? userImageUrl;
   final String? subtitle;
   final VoidCallback? onLogout;
+  final List<Widget>? actions;
 
   const CustomAppBar({
     super.key,
@@ -15,6 +16,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.userImageUrl,
     this.subtitle,
     this.onLogout,
+    this.actions,
   });
 
   @override
@@ -54,6 +56,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ],
               ),
             ),
+            if (actions != null) ...actions!,
             IconButton(
               icon: Icon(
                 Icons.logout,

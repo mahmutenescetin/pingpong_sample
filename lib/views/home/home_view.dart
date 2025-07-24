@@ -78,6 +78,17 @@ class HomeView extends StatelessWidget {
                 userImageUrl: null,
                 subtitle: 'Aradığın etkinliği bul',
                 onLogout: viewModel.logOut,
+                actions: [
+                  Icon(
+                    isOnline ? Icons.wifi : Icons.wifi_off,
+                    color: isOnline ? Colors.green : Colors.red,
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.refresh),
+                    onPressed: () => viewModel.fetchActivity(isOnline: isOnline),
+                    tooltip: 'Yenile',
+                  ),
+                ],
               ),
               body: ListView(
                 padding: const EdgeInsets.all(16),
