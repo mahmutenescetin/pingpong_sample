@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pingpong_sample/utils/extensions/context_extensions.dart';
 
 class ReusableText extends StatelessWidget {
   final String text;
@@ -22,7 +23,7 @@ class ReusableText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: style,
+      style: style ?? context.textStyles.body.b16Regular,
       textAlign: textAlign,
       maxLines: maxLines,
       overflow: overflow,

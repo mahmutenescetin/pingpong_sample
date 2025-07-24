@@ -60,7 +60,6 @@ class _ViewModelBuilder<T extends ChangeNotifier>
         interactionMixin.navigateAndRemoveUntil = _navigateAndRemoveUntil;
         interactionMixin.getViewModel = _getViewModel;
         interactionMixin.screenHeight = context.height;
-        // showFlushBar fonksiyonunu burada atıyoruz
         interactionMixin.showFlushBar = (String message, {FlushBarType type = FlushBarType.success}) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(message)),
@@ -147,6 +146,7 @@ class _ViewModelBuilder<T extends ChangeNotifier>
     bool clearStack = false,
     bool rootNavigator = false,
   }) {
+    print("asdas");
     return NavigatorUtil.instance.call<R>(
       routeName,
       args: args,

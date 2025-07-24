@@ -3,13 +3,18 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pingpong_sample/firebase_options.dart';
+import 'package:pingpong_sample/routes/create_view.dart';
+import 'package:pingpong_sample/routes/generate_routes.dart';
+import 'package:pingpong_sample/routes/routes.g.dart';
 import 'package:pingpong_sample/services/remote/auth_service.dart';
 import 'package:pingpong_sample/utils/locator.dart';
 import 'package:pingpong_sample/services/local/shared_preference_service.dart';
+import 'package:pingpong_sample/utils/navigator_util.dart';
 import 'package:pingpong_sample/views/home/home_view.dart';
 import 'package:pingpong_sample/views/login/login_view.dart';
 import 'package:provider/provider.dart';
 import 'package:pingpong_sample/providers/connectivity_provider.dart';
+import 'package:pingpong_sample/themes/themes.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
@@ -48,10 +53,10 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return MaterialApp(
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          ),
-          home: const AuthGate(),
+          navigatorKey: rootNavigator,
+          onGenerateRoute: onGenerateRoute,
+          home: AuthGate(),
+          theme: Themes.lightTheme,
         );
       },
     );
