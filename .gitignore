@@ -31,12 +31,7 @@ migrate_working_dir/
 /build/
 **/doc/api/
 
-# iOS
-ios/Flutter/.last_build_id
-ios/Pods/
-ios/Podfile.lock
-ios/Flutter/ephemeral/
-ios/Runner/GoogleService-Info.plist
+
 
 # Android
 android/app/debug

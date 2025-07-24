@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pingpong_sample/common/base_view_model.dart';
+import 'package:pingpong_sample/routes/routes.g.dart';
 import 'package:pingpong_sample/services/local/shared_preference_service.dart';
 import '../../services/local/activity_local_service.dart';
 
@@ -8,6 +10,16 @@ class HomeViewModel extends BaseViewModel {
   bool isLoaded = false;
   bool? lastIsOnline;
 
+  String _selectedCategoryName = 'Hepsi';
+  int _bottomNavIndex = 0;
+  final Map<int, bool> _localFavorites = {};
+
+  String get selectedCategoryName => _selectedCategoryName;
+
+  int get bottomNavIndex => _bottomNavIndex;
+
+  Map<int, bool> get localFavorites => _localFavorites;
+
   final SharedPreferenceService _prefsService;
   late final ActivityLocalService _localService;
 
@@ -15,12 +27,25 @@ class HomeViewModel extends BaseViewModel {
     _localService = ActivityLocalService(_prefsService);
   }
 
-  @override
-  void onBindingCreated() {
-    super.onBindingCreated();
+  void setCategory(String category) {
+    _selectedCategoryName = category;
+    notify();
   }
 
-  Future<void> fetchActivity({bool forceOnline = false, bool isOnline = false}) async {
+  void setBottomNavIndex(int index) {
+    _bottomNavIndex = index;
+    notify();
+  }
+
+  void toggleFavorite(int index) {
+    _localFavorites[index] = !(_localFavorites[index] ?? false);
+    notify();
+  }
+
+  Future<void> fetchActivity({
+    bool forceOnline = false,
+    bool isOnline = false,
+  }) async {
     isLoaded = false;
     notify();
     if (isOnline || forceOnline) {
@@ -58,5 +83,10 @@ class HomeViewModel extends BaseViewModel {
       isLoaded = true;
       notify();
     }
+  }
+
+  void logOut()  async {
+    await FirebaseAuth.instance.signOut();
+    navigate(Routes.login, clearStack: true);
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pingpong_sample/common/base_view_model.dart';
+import 'package:pingpong_sample/routes/routes.g.dart';
 import 'package:pingpong_sample/services/remote/auth_service.dart';
 import 'package:pingpong_sample/services/local/shared_preference_service.dart';
 import 'package:pingpong_sample/utils/locator.dart';
@@ -25,6 +26,7 @@ class LoginViewModel extends BaseViewModel {
       if (!mounted) return;
       showFlushBar("Kayıt başarısız: $e'");
     }
+    
   }
 
   Future<void> login() async {
@@ -35,6 +37,7 @@ class LoginViewModel extends BaseViewModel {
       );
       if (!mounted) return;
       showFlushBar('Giriş başarılı');
+      navigate(Routes.home, clearStack: true);
     } catch (e) {
       if (!mounted) return;
       showFlushBar('Giriş başarısız: $e');
