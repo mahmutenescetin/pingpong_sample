@@ -4,7 +4,6 @@ import 'package:pingpong_sample/common/base_view_model.dart';
 import 'package:pingpong_sample/routes/routes.g.dart';
 import 'package:pingpong_sample/services/local/shared_preference_service.dart';
 import '../../services/local/activity_local_service.dart';
-import 'package:flutter/material.dart';
 
 class HomeViewModel extends BaseViewModel {
   List<Map<String, dynamic>> activity = [];
