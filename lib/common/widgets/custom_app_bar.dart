@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:pingpong_sample/common/widgets/reusable_text.dart';
 import 'package:pingpong_sample/utils/extensions/context_extensions.dart';
 
@@ -26,29 +27,38 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           children: [
             CircleAvatar(
               radius: 24,
-              backgroundImage: userImageUrl != null ? NetworkImage(userImageUrl!) : null,
-              child: userImageUrl == null ? const Icon(Icons.person, size: 28) : null,
+              backgroundImage: userImageUrl != null
+                  ? NetworkImage(userImageUrl!)
+                  : null,
+              child: userImageUrl == null
+                  ? const Icon(Icons.person, size: 28)
+                  : null,
             ),
-            const SizedBox(width: 12),
+            Gap(12),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ReusableText(
-                    'Hi, $userName',
+                    'Merhaba, $userName',
                     style: context.textStyles.title.t18Semibold,
                   ),
                   if (subtitle != null)
                     ReusableText(
                       subtitle!,
-                      style: context.textStyles.body.b16Regular.copyWith(color: Colors.grey.shade600),
+                      style: context.textStyles.body.b16Regular.copyWith(
+                        color: Colors.grey.shade600,
+                      ),
                     ),
                 ],
               ),
             ),
             IconButton(
-              icon: Icon(Icons.logout, color: context.colors.generalText.text.primary),
+              icon: Icon(
+                Icons.logout,
+                color: context.colors.generalText.text.primary,
+              ),
               onPressed: onLogout,
               tooltip: 'Çıkış Yap',
             ),
@@ -60,4 +70,4 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize => const Size.fromHeight(72);
-} 
+}

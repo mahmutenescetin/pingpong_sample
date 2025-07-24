@@ -26,7 +26,7 @@ class LoginView extends StatelessWidget {
                   borderRadius: BorderRadius.circular(24),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.08),
+                      color: Colors.grey.withValues(alpha: 0.08),
                       blurRadius: 16,
                       offset: const Offset(0, 8),
                     ),
@@ -42,7 +42,7 @@ class LoginView extends StatelessWidget {
                       style: context.textStyles.title.t18Semibold,
                       textAlign: TextAlign.center,
                     ),
-                    const SizedBox(height: 8),
+                    Gap(8),
                     ReusableText(
                       'Lütfen giriş yap veya kayıt ol',
                       style: context.textStyles.body.b16Regular.copyWith(
@@ -50,7 +50,7 @@ class LoginView extends StatelessWidget {
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    const SizedBox(height: 24),
+                    Gap(24),
                     TextField(
                       controller: viewModel.emailController,
                       decoration: InputDecoration(
@@ -63,7 +63,7 @@ class LoginView extends StatelessWidget {
                         fillColor: Colors.grey.shade100,
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    Gap(16),
                     TextField(
                       controller: viewModel.passwordController,
                       decoration: InputDecoration(
@@ -77,14 +77,14 @@ class LoginView extends StatelessWidget {
                       ),
                       obscureText: true,
                     ),
-                    const SizedBox(height: 24),
+                    Gap(24),
                     ReusableElevatedButton(
                       text: 'Giriş Yap',
                       onPressed: viewModel.login,
                       expanded: true,
                       enableButtonColor: Colors.purple,
                     ),
-                    const SizedBox(height: 12),
+                    Gap(12),
                     ReusableElevatedButton.secondaryButton(
                       text: 'Kayıt Ol',
                       onPressed: viewModel.register,

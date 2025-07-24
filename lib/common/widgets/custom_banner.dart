@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:pingpong_sample/common/widgets/reusable_text.dart';
 import 'package:pingpong_sample/utils/extensions/context_extensions.dart';
 
@@ -34,14 +35,18 @@ class CustomBanner extends StatelessWidget {
               children: [
                 ReusableText(
                   title,
-                  style: context.textStyles.body.b16Regular.copyWith(color: Colors.white),
+                  style: context.textStyles.body.b16Regular.copyWith(
+                    color: Colors.white,
+                  ),
                 ),
-                const SizedBox(height: 8),
+                Gap(8),
                 ReusableText(
                   description,
-                  style: context.textStyles.body.b16Regular.copyWith(color: Colors.white),
+                  style: context.textStyles.body.b16Regular.copyWith(
+                    color: Colors.white,
+                  ),
                 ),
-                const SizedBox(height: 16),
+                Gap(16),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
@@ -53,7 +58,9 @@ class CustomBanner extends StatelessWidget {
                   onPressed: onButtonTap,
                   child: ReusableText(
                     buttonText,
-                    style: context.textStyles.body.b16Regular.copyWith(color: Colors.purple),
+                    style: context.textStyles.body.b16Regular.copyWith(
+                      color: Colors.purple,
+                    ),
                   ),
                 ),
               ],
@@ -73,4 +80,4 @@ class CustomBanner extends StatelessWidget {
       ),
     );
   }
-} 
+}

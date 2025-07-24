@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:pingpong_sample/common/view_model_builder.dart';
 import 'package:pingpong_sample/providers/connectivity_provider.dart';
 import 'package:pingpong_sample/services/local/shared_preference_service.dart';
@@ -15,7 +16,6 @@ import 'package:pingpong_sample/common/widgets/custom_banner.dart';
 import 'package:pingpong_sample/common/widgets/category_tab_bar.dart';
 import 'package:pingpong_sample/common/widgets/product_card.dart';
 import 'package:pingpong_sample/common/widgets/custom_bottom_nav_bar.dart';
-import 'package:pingpong_sample/views/login/login_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -87,14 +87,14 @@ class HomeView extends StatelessWidget {
                     description:
                         'Daha çok etkinlik ve\ndaha fazla indirim kazan.',
                     buttonText: 'Teklifi al!',
-                    imageUrl:
+                    imageUrl: isOnline ?
                         filteredActivities.isNotEmpty &&
                             filteredActivities[0]['image'] != null
                         ? filteredActivities[0]['image']
-                        : 'https://randomuser.me/api/portraits/women/45.jpg',
+                        : 'https://randomuser.me/api/portraits/women/45.jpg' : null,
                     onButtonTap: () {},
                   ),
-                  const SizedBox(height: 20),
+                  Gap(20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -112,7 +112,7 @@ class HomeView extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 12),
+                  Gap(12),
                   CategoryTabBar(
                     categories: categoriesList,
                     selectedIndex: categoriesList.indexOf(selectedCategoryName),
@@ -120,7 +120,7 @@ class HomeView extends StatelessWidget {
                       viewModel.setCategory(categoriesList[index]);
                     },
                   ),
-                  const SizedBox(height: 20),
+                  Gap(20),
                   filteredActivities.isEmpty
                       ? Center(
                           child: ReusableText(
@@ -149,7 +149,7 @@ class HomeView extends StatelessWidget {
                             final isFavorite =
                                 viewModel.localFavorites[index] ?? false;
                             return ProductCard(
-                              imageUrl: image,
+                              imageUrl: isOnline ? image : null,
                               title: title,
                               description: description,
                               price: price,

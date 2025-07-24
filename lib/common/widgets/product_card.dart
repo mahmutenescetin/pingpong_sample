@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:pingpong_sample/common/widgets/reusable_text.dart';
 import 'package:pingpong_sample/utils/extensions/context_extensions.dart';
+import 'package:pingpong_sample/utils/extensions/object_extensions.dart';
 
 class ProductCard extends StatelessWidget {
-  final String imageUrl;
+  final String? imageUrl;
   final String title;
   final String description;
   final String price;
@@ -13,7 +15,7 @@ class ProductCard extends StatelessWidget {
 
   const ProductCard({
     super.key,
-    required this.imageUrl,
+    this.imageUrl,
     required this.title,
     required this.description,
     required this.price,
@@ -32,7 +34,7 @@ class ProductCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.1),
+              color: Colors.grey.withValues(alpha: 0.1),
               blurRadius: 8,
               offset: const Offset(0, 4),
             ),
@@ -42,30 +44,31 @@ class ProductCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.network(
-                imageUrl,
-                height: 80,
-                width: double.infinity,
-                fit: BoxFit.cover,
+            if (imageUrl.isNotNull)
+              ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Image.network(
+                  imageUrl!,
+                  height: 80,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-            const SizedBox(height: 8),
+            Gap(8),
             ReusableText(
               title,
               style: context.textStyles.body.b16Regular,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
-            const SizedBox(height: 4),
+            Gap(4),
             ReusableText(
               description,
               style: context.textStyles.body.b12Regular,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
-            const SizedBox(height: 4),
+            Gap(4),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
